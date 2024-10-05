@@ -1,9 +1,9 @@
 {
     "chrome": {
-        "default": "128.0",
+        "default": "latest",
         "versions": {
-            "128.0": {
-                "image": "selenoid/vnc_chrome:128.0",
+            "latest": {
+                "image": "selenoid/vnc_chrome:latest",
                 "port": "4444",
                 "path": "/",
                 "selenoid": {
