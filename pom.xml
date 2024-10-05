@@ -35,6 +35,21 @@
             <version>5.9.2</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>4.11.0</version> <!-- Ensure the version matches your Selenide version -->
+        </dependency>
+
+        <!-- Other required Selenium dependencies -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-remote-driver</artifactId>
+            <version>4.11.0</version> <!-- Ensure the version matches your Selenide version -->
+        </dependency>
+
+
     </dependencies>
 
     <!-- Add Surefire Plugin for Test Execution -->

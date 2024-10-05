@@ -6,6 +6,9 @@ import static com.codeborne.selenide.Selenide.*;
 
 import com.codeborne.selenide.WebDriverRunner;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -16,6 +19,9 @@ public class homePageTests {
     @BeforeClass
     public void setup(){
         Configuration.browser = "chrome";
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver = new ChromeDriver();
+        WebDriverRunner.setWebDriver(driver);
 //        Configuration.headless = true; // Enable headless mode
         Configuration.browserSize = "1366x768"; // Set a specific window size
 //        Configuration.remote = "http://localhost:4444/wd/hub"; // If using a remote WebDriver
@@ -34,5 +40,10 @@ public class homePageTests {
                 .click();
         element(byText(" Login ")).shouldBe(Condition.appear, Duration.ofSeconds(10))
                 .click();
+    }
+
+    @AfterClass
+    public void tearDown(){
+        closeWebDriver();
     }
 }
