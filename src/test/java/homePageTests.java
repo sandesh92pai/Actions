@@ -58,6 +58,21 @@ public class homePageTests {
                 .click();
     }
 
+    @Test
+    public void loginTest2(){
+        open("https://opensource-demo.orangehrmlive.com/auth/login");
+        element(byName("username")).shouldBe(Condition.appear, Duration.ofSeconds(10))
+                .setValue("Admin");
+
+        element(byName("password")).shouldBe(Condition.appear, Duration.ofSeconds(10))
+                .setValue("admin123");
+
+        element(byText("Login")).shouldBe(Condition.appear, Duration.ofSeconds(10))
+                .click();
+        element(byText(" Login ")).shouldBe(Condition.appear, Duration.ofSeconds(10))
+                .click();
+    }
+
     @AfterClass
     public void tearDown(){
 
