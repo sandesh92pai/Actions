@@ -1,4 +1,5 @@
 name: Java CI with Maven
+
 on:
   push:
     branches:
@@ -26,18 +27,13 @@ jobs:
           distribution: temurin
           cache: maven
 
-      - name: Ensure directories exist
-        run: |
-          mkdir -p ${{ github.workspace }}/config
-          mkdir -p ${{ github.workspace }}/video
-          mkdir -p ${{ github.workspace }}/logs
+      - name: Set environment variable for Docker
+        run: echo "GITHUB_WORKSPACE=${{ github.workspace }}" >> $GITHUB_ENV
 
       - name: Install Docker Compose
         run: |
           sudo apt-get update
           sudo apt-get install -y docker-compose
-
-      # No need to copy browsers.json if it already exists in the config folder
 
       - name: Start Selenoid
         run: docker-compose up -d
