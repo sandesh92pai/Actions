@@ -27,7 +27,9 @@ public class homePageTests {
 
         // Set Selenoid options
         Map<String, Object> selenoidOptions = new HashMap<>();
-        selenoidOptions.put("enableVNC", true);
+        selenoidOptions.put("enableVNC", true);          // Enable VNC for debugging
+        selenoidOptions.put("enableVideo", true);        // Enable video recording
+        selenoidOptions.put("videoName", "test.mp4");    // Set the video file name
         options.setCapability("selenoid:options", selenoidOptions);
 
         // Set Selenide configuration
