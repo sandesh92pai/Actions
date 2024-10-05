@@ -35,9 +35,6 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y docker-compose
 
-      - name: Pull required browser images
-        run: |
-          docker pull selenoid/vnc_chrome:latest
 
       - name: Start Selenoid
         run: docker-compose up -d
