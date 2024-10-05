@@ -18,10 +18,11 @@ public class homePageTests {
 
     @BeforeClass
     public void setup(){
-        Configuration.browser = "chrome";
-        Configuration.headless = true; // Enable headless mode
-        Configuration.browserSize = "1366x768"; // Set a specific window size
-        Configuration.remote = "http://localhost:4444/wd/hub"; // If using a remote WebDriver
+        Configuration.browser = "chrome"; // Use "chrome" for VNC-enabled Chrome
+        Configuration.headless = false; // Set to false if you want to see the browser UI
+        Configuration.browserSize = "1366x768"; // Set your preferred size
+        Configuration.remote = "http://localhost:4444/wd/hub"; // Point to the Selenoid instance
+
     }
 
     @Test
