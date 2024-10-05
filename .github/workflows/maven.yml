@@ -35,8 +35,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y docker-compose
 
-      - name: Pull latest Chrome image
-        run:  docker pull selenoid/chrome:latest
+      - name: Pull specific Chrome image
+        run: docker pull selenoid/vnc_chrome:v98.0  # Replace v98.0 with the desired version
 
       - name: Start Selenoid
         run: docker-compose up -d
