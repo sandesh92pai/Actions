@@ -53,3 +53,15 @@ jobs:
         with:
           name: test-results
           path: target/surefire-reports
+
+      - name: Archive Logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: logs
+          path: ${GITHUB_WORKSPACE}/logs
+
+      - name: Archive Videos
+        uses: actions/upload-artifact@v4
+        with:
+          name: videos
+          path: ${GITHUB_WORKSPACE}/video
