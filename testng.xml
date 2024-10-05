@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite" verbose="2">
+    <test name="homePageTests" preserve-order="true">
+        <classes>
+            <class name="homePageTests"/> <!-- Replace with your actual test class path -->
+            <!-- Add more test classes here if needed -->
+            <!-- <class name="com.example.tests.AnotherTestClass"/> -->
+        </classes>
+    </test>
+</suite>
