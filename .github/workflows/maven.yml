@@ -39,7 +39,7 @@ jobs:
 
       - name: Copy Selenoid config
         run: |
-          cp path/to/browsers.json ${{ github.workspace }}/config
+          run: cp ${{ github.workspace }}/config/browsers.json ${{ github.workspace }}/config
 
       - name: Start Selenoid
         run: docker-compose up -d
