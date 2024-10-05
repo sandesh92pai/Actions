@@ -35,8 +35,6 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y docker-compose
 
-      # Replace v98.0 with the desired version
-
       - name: Start Selenoid
         run: docker-compose up -d
 
