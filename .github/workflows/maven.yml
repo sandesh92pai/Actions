@@ -26,14 +26,16 @@ jobs:
           java-version: '11'
           distribution: temurin
           cache: maven
+      - name: Check directory permissions
+        run: ls -ld ${{ github.workspace }}/config ${{ github.workspace }}/video ${{ github.workspace }}/logs
       - name: Install Docker Compose
-        run:
+        run: |
           sudo apt-get update
           sudo apt-get install -y docker-compose
       - name: Start Selenoid
         run: docker-compose up -d
       - name: Build with Maven
-        run:  mvn clean test -DsuiteXmlFile=testng.xml
+        run: mvn clean test -DsuiteXmlFile=testng.xml
       - name: Stop Selenoid
         run: docker-compose down
       - name: Archive test results
@@ -41,3 +43,4 @@ jobs:
         with:
           name: test-results
           path: target/surefire-reports
+
