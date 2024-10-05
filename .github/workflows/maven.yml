@@ -37,9 +37,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y docker-compose
 
-      - name: Copy Selenoid config
-        run: |
-          run: cp ${{ github.workspace }}/config/browsers.json ${{ github.workspace }}/config
+      # No need to copy browsers.json if it already exists in the config folder
 
       - name: Start Selenoid
         run: docker-compose up -d
