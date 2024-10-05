@@ -6,6 +6,7 @@ on:
   pull_request:
     branches:
       - master
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -14,36 +15,42 @@ jobs:
         image: aerokube/selenoid:latest-release
         ports:
           - 4444:4444
-        options: >-
-          --mount type=bind,source=${{ github.workspace }}/config,target=/etc/selenoid
-          --mount type=bind,source=${{ github.workspace }}/video,target=/opt/selenoid/video
-          --mount type=bind,source=${{ github.workspace }}/logs,target=/opt/selenoid/logs
+
     steps:
       - uses: actions/checkout@v4
+
       - name: Set up JDK 11
         uses: actions/setup-java@v4
         with:
           java-version: '11'
           distribution: temurin
           cache: maven
-      - name: Create necessary directories
+
+      - name: Ensure directories exist
         run: |
           mkdir -p ${{ github.workspace }}/config
           mkdir -p ${{ github.workspace }}/video
           mkdir -p ${{ github.workspace }}/logs
-      - name: Check directory permissions
-        run: ls -ld ${{ github.workspace }}/config ${{ github.workspace }}/video ${{ github.workspace }}/logs
+
       - name: Install Docker Compose
         run: |
           sudo apt-get update
           sudo apt-get install -y docker-compose
+
+      - name: Copy Selenoid config
+        run: |
+          cp path/to/browsers.json ${{ github.workspace }}/config
+
       - name: Start Selenoid
         run: docker-compose up -d
-      - name: Build with Maven
+
+      - name: Run Maven Tests
         run: mvn clean test -DsuiteXmlFile=testng.xml
+
       - name: Stop Selenoid
         run: docker-compose down
-      - name: Archive test results
+
+      - name: Archive Test Results
         uses: actions/upload-artifact@v4
         with:
           name: test-results

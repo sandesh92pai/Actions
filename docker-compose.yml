@@ -3,10 +3,10 @@ services:
   selenoid:
     image: aerokube/selenoid:latest-release
     volumes:
-      - "${{ github.workspace }}/config:/etc/selenoid"  # Adjusted to use relative path
+      - "${{ github.workspace }}/config:/etc/selenoid"
       - "/var/run/docker.sock:/var/run/docker.sock"
-      - "${{ github.workspace }}/video:/opt/selenoid/video"  # Adjusted to use relative path
-      - "${{ github.workspace }}/logs:/opt/selenoid/logs"  # Adjusted to use relative path
+      - "${{ github.workspace }}/video:/opt/selenoid/video"
+      - "${{ github.workspace }}/logs:/opt/selenoid/logs"
     environment:
       - OVERRIDE_VIDEO_OUTPUT_DIR=/opt/selenoid/video
     command: ["-conf", "/etc/selenoid/browsers.json", "-video-output-dir", "/opt/selenoid/video", "-log-output-dir", "/opt/selenoid/logs"]
