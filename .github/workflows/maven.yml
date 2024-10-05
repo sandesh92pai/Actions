@@ -40,6 +40,10 @@ jobs:
         run: |
           docker pull selenoid/vnc_chrome:128.0
 
+      - name: Pull Selenoid Video Recorder
+        run: docker pull selenoid/video-recorder:latest-release
+
+
       - name: Start Selenoid
         run: docker-compose up -d
 
