@@ -18,7 +18,7 @@ public class homePageTests {
 
     @BeforeClass
     public void setup(){
-        Configuration.browser = "firefox";
+        Configuration.browser = "chrome";
         Configuration.headless = true; // Enable headless mode
         Configuration.browserSize = "1366x768"; // Set a specific window size
         Configuration.remote = "http://localhost:4444/wd/hub"; // If using a remote WebDriver

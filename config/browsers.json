@@ -1,10 +1,15 @@
 {
-    "firefox": {
-        "latest": {
-            "image": "selenoid/firefox:latest",
-            "port": "4444",
-            "path": "/wd/hub",
-            "tmpfs": {"/tmp": "size=512m"}
+    "chrome": {
+        "default": "123.0",
+        "versions": {
+            "123.0": {
+                "image": "selenoid/vnc_chrome:123.0",
+                "port": "4444",
+                "path": "/",
+                "tmps": {
+                    "/tmp": "size=128m"
+                }
+            }
         }
     }
 }
