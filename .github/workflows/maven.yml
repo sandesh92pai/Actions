@@ -69,5 +69,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: videos
-          path: video
+          path: ${GITHUB_WORKSPACE}/video
+
 
