@@ -8,21 +8,37 @@ import com.codeborne.selenide.WebDriverRunner;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 
 public class homePageTests {
 
     @BeforeClass
     public void setup(){
-        Configuration.browser = "chrome"; // Use "chrome" for VNC-enabled Chrome
-        Configuration.headless = false; // Set to false if you want to see the browser UI
-        Configuration.browserSize = "1366x768"; // Set your preferred size
-        Configuration.remote = "http://localhost:4444/wd/hub"; // Point to the Selenoid instance
+        ChromeOptions options = new ChromeOptions();
+        options.setCapability("platformName", "LINUX");
+        options.setCapability("browserName", "chrome");
 
+        // Set Selenoid options
+        Map<String, Object> selenoidOptions = new HashMap<>();
+        selenoidOptions.put("enableVNC", true);
+        options.setCapability("selenoid:options", selenoidOptions);
+
+        // Set Selenide configuration
+        Configuration.browser = "chrome";
+        Configuration.remote = "http://localhost:4444/wd/hub"; // URL of your Selenoid server
+        Configuration.headless = false; // Set to true if you want headless mode
+        Configuration.browserSize = "1366x768"; // Optional, set browser size
+        Configuration.browserCapabilities = options;
+        Configuration.browserVersion = "128.0";
+        // Your test code here
+        open("https://opensource-demo.orangehrmlive.com/auth/login");
     }
 
     @Test
