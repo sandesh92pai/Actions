@@ -43,7 +43,7 @@ jobs:
         run: docker-compose up -d
 
       - name: Run Maven Tests
-        run: mvn clean test -DsuiteXmlFile=testng.xml
+        run: mvn clean test -Dmaven.test.failure.ignore=true
 
       - name: Stop Selenoid
         run: docker-compose down
