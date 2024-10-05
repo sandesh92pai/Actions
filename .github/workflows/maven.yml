@@ -26,6 +26,11 @@ jobs:
           java-version: '11'
           distribution: temurin
           cache: maven
+      - name: Create necessary directories
+        run: |
+          mkdir -p ${{ github.workspace }}/config
+          mkdir -p ${{ github.workspace }}/video
+          mkdir -p ${{ github.workspace }}/logs
       - name: Check directory permissions
         run: ls -ld ${{ github.workspace }}/config ${{ github.workspace }}/video ${{ github.workspace }}/logs
       - name: Install Docker Compose
