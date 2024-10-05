@@ -9,6 +9,15 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    services:
+      selenoid:
+        image: aerokube/selenoid:latest-release
+        ports:
+          - 4444:4444
+        options: >-
+          --mount type=bind,source=${{ github.workspace }}/config,target=/etc/selenoid
+          --mount type=bind,source=${{ github.workspace }}/video,target=/opt/selenoid/video
+          --mount type=bind,source=${{ github.workspace }}/logs,target=/opt/selenoid/logs
     steps:
       - uses: actions/checkout@v4
       - name: Set up JDK 11
@@ -17,8 +26,16 @@ jobs:
           java-version: '11'
           distribution: temurin
           cache: maven
+      - name: Install Docker Compose
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker-compose
+      - name: Start Selenoid
+        run: docker-compose up -d
       - name: Build with Maven
-        run: mvn clean test -Dmaven.test.failure.ignore=true
+        run:  mvn clean test -DsuiteXmlFile=testng.xml
+      - name: Stop Selenoid
+        run: docker-compose down
       - name: Archive test results
         uses: actions/upload-artifact@v4
         with:

@@ -18,13 +18,10 @@ public class homePageTests {
 
     @BeforeClass
     public void setup(){
-        Configuration.browser = "chrome";
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
-        WebDriverRunner.setWebDriver(driver);
-//        Configuration.headless = true; // Enable headless mode
+        Configuration.browser = "firefox";
+        Configuration.headless = true; // Enable headless mode
         Configuration.browserSize = "1366x768"; // Set a specific window size
-//        Configuration.remote = "http://localhost:4444/wd/hub"; // If using a remote WebDriver
+        Configuration.remote = "http://localhost:4444/wd/hub"; // If using a remote WebDriver
     }
 
     @Test
@@ -38,12 +35,12 @@ public class homePageTests {
 
         element(byText("Login")).shouldBe(Condition.appear, Duration.ofSeconds(10))
                 .click();
-        element(byText(" Login ")).shouldBe(Condition.appear, Duration.ofSeconds(10))
+        element(byText(" Login ")).shouldBe(Condition.appear, Duration.ofSeconds(5))
                 .click();
     }
 
     @AfterClass
     public void tearDown(){
-        closeWebDriver();
+
     }
 }
