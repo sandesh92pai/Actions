@@ -4,6 +4,8 @@ import com.codeborne.selenide.Configuration;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 
+import com.codeborne.selenide.WebDriverRunner;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -14,9 +16,9 @@ public class homePageTests {
     @BeforeClass
     public void setup(){
         Configuration.browser = "chrome";
-        Configuration.headless = true; // Enable headless mode
+//        Configuration.headless = true; // Enable headless mode
         Configuration.browserSize = "1366x768"; // Set a specific window size
-        Configuration.remote = "http://localhost:4444/wd/hub"; // If using a remote WebDriver
+//        Configuration.remote = "http://localhost:4444/wd/hub"; // If using a remote WebDriver
     }
 
     @Test
